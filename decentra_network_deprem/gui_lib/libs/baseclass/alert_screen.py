@@ -24,27 +24,22 @@ from decentra_network.wallet.wallet_import import wallet_import
 from kivy.clock import mainthread
 from plyer import gps
 
-class WalletScreen(MDScreen):
+class AlertScreen(MDScreen):
     pass
 
 
-class Create_Wallet_Box(MDGridLayout):
+class Create_Alert_Box(MDGridLayout):
     cols = 2
 
 
-class Delete_Wallet_Box(MDGridLayout):
+
+class AlertBox(MDGridLayout):
     cols = 2
 
-
-class WalletBox(MDGridLayout):
-    cols = 2
-    text = StringProperty()
 
     wallet_alert_dialog = None
-    delete_wallet_alert_dialog = None
 
     FONT_PATH = f"{os.environ['DECENTRAD_ROOT']}/gui_lib/fonts/"
-
 
 
 
@@ -60,7 +55,7 @@ class WalletBox(MDGridLayout):
                 title="Creating a wallet",
                 type="custom",
                 auto_dismiss=False,
-                content_cls=Create_Wallet_Box(),
+                content_cls=Create_Alert_Box(),
                 buttons=[
                     MDFlatButton(
                         text="CANCEL",
@@ -91,7 +86,7 @@ class WalletBox(MDGridLayout):
 
                 sub_obj.text = ""
 
-    def Wallet_Create(self):
+    def Alert_Create(self):
         self.show_wallet_alert_dialog()
 
     def dismiss_delete_wallet_alert_dialog(self, widget):
@@ -103,7 +98,7 @@ class WalletBox(MDGridLayout):
                 title="Deleting a wallet",
                 type="custom",
                 auto_dismiss=False,
-                content_cls=Delete_Wallet_Box(),
+                content_cls=Delete_Alert_Box(),
                 buttons=[
                     MDFlatButton(
                         text="CANCEL",
@@ -122,37 +117,6 @@ class WalletBox(MDGridLayout):
 
         self.delete_wallet_alert_dialog.open()
 
-    def Wallet_Delete(self):
-        if the_settings()["wallet"] != 0:
-            self.show_delete_wallet_alert_dialog()
-        else:
-            SweetAlert().fire(
-                "First wallet cannot be deleted.",
-                type="failure",
-            )
 
-    def delete_the_wallet(self, widget):
-        saved_wallets = get_saved_wallet()
-        selected_wallet_pubkey = wallet_import(int(the_settings()["wallet"]),
-                                               0)
-        for each_wallet in saved_wallets:
-            if selected_wallet_pubkey == saved_wallets[each_wallet][
-                    "publickey"]:
-                change_wallet(0)
-                wallet_delete(each_wallet)
-                self.reflesh_balance()
-                self.dismiss_delete_wallet_alert_dialog(widget)
 
-    def wallet_qr(self):
-        address = wallet_import(-1, 3)
-        location_of_qr = qr(address)
-        SweetAlert().fire(text=address,
-                          image=location_of_qr,
-                          height_image="400px")
 
-    def wallet_copy(self):
-        Clipboard.copy(wallet_import(-1, 3))
-        SweetAlert().fire(
-            "The address has been copied to your clipboard.",
-            type="success",
-        )

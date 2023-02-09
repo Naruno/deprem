@@ -3,8 +3,8 @@
 #: import NavigationItem decentra_network_deprem.gui_lib.libs.baseclass.tabnavigation.NavigationItem
 #: import NavigationBar decentra_network_deprem.gui_lib.libs.baseclass.tabnavigation.NavigationBar
 
-#: import WalletScreen decentra_network_deprem.gui_lib.libs.baseclass.wallet_screen.WalletScreen
-#: import SettingsScreen decentra_network_deprem.gui_lib.libs.baseclass.settings_screen.SettingsScreen
+#: import AlertScreen decentra_network_deprem.gui_lib.libs.baseclass.alert_screen.AlertScreen
+#: import LocationScreen decentra_network_deprem.gui_lib.libs.baseclass.location_screen.LocationScreen
 
 
 <DecentraRootScreen>
@@ -16,31 +16,31 @@
             id: nav_bar
 
             NavigationItem:
-                text: "WALLET"
+                text: "ALARM"
                 icon: "wallet-outline"
                 on_release:
                     scr_manager.transition.direction = "right"
-                    scr_manager.current = "WALLET"
+                    scr_manager.current = "ALARM"
 
 
 
             NavigationItem:
-                text: "SETTINGS"
-                icon: "tune"
+                text: "LOKASYON"
+                icon: "crosshairs-gps"
                 on_release:
                     scr_manager.transition.direction = "left"
-                    scr_manager.current = "SETTINGS"
+                    scr_manager.current = "LOKASYON"
 
         ScreenManager:
             id: scr_manager
 
-            WalletScreen:
-                name: "WALLET"
+            AlertScreen:
+                name: "ALARM"
 
 
 
-            SettingsScreen:
-                name: "SETTINGS"
+            LocationScreen:
+                name: "LOKASYON"
 
 
 <ScrollView>

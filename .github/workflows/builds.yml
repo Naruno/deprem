@@ -69,7 +69,7 @@ jobs:
     - name: Zip
       run: |
         cd dist
-        Compress-Archive Decentra-Network-GUI/ gui_win32_decentra_network.zip
+        Compress-Archive Deprem-Decentra-Network-GUI/ gui_win32_decentra_network.zip
     
 
     - uses: actions/upload-artifact@v2
