@@ -48,29 +48,7 @@ class WalletBox(MDGridLayout):
 
 
 
-    def start(self, minTime, minDistance):
-        gps.start(minTime, minDistance)
 
-    def stop(self):
-        gps.stop()
-
-    @mainthread
-    def on_location(self, **kwargs):
-        App.get_running_app().gps_location = '\n'.join([
-            '{}={}'.format(k, v) for k, v in kwargs.items()])
-
-    @mainthread
-    def on_status(self, stype, status):
-
-        App.get_running_app().gps_status = 'type={}\n{}'.format(stype, status)
-
-    def on_pause(self):
-        gps.stop()
-        return True
-
-    def on_resume(self):
-        gps.start(1000, 0)
-        pass
 
 
 
