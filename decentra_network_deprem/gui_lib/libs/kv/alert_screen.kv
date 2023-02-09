@@ -12,22 +12,6 @@
                 text : "Balance"
 
 
-<Delete_Alert_Box>
-    adaptive_height: True
-    height:"120dp"
-    padding: dp(24)
-
-
-
-    MDGridLayout:
-        adaptive_height: True
-
-
-        cols: 2
-        DecentraLabel:
-            text: "Are you sure ?"
-            halign: "center"
-            font_style: "H4"
 
 <Create_Alert_Box>
     adaptive_height: True
@@ -76,9 +60,21 @@
             height: but2.height
             MDRoundFlatIconButton:
                 id: but2
-                icon: "delete"
+                icon: "home-alert-outline"
                 on_press: root.Alert_Create()
                 text_color: 1, 0, 0, 1
-                text: "Delete Alert"
+                text: "DEPREM OLDU"
+                halign: "right"
+                font_style: "Button"
+
+
+        AnchorLayout:
+            size_hint_y: None
+            height: but2.height
+            MDRoundFlatIconButton:
+                id: but2
+                icon: "lastpass"
+                on_press: root.set_pass()
+                text: "ŞİFRE AYARLA"
                 halign: "right"
                 font_style: "Button"

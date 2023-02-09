@@ -8,6 +8,8 @@
         MDList:
             spacing: dp(10)
 
+            LocationBox
+
 <LocationBox>
     adaptive_height: True
 
@@ -32,13 +34,14 @@
 
         AnchorLayout:
             size_hint_y: None
-            height: but2.height
+            height: but3.height
             MDRoundFlatIconButton:
-                id: but2
-                icon: "location"
+                id: but3
+                icon: "arrow-down-drop-circle-outline"
                 on_press: root.show_example_list_bottom_sheet()
                 text: root.text
                 halign: "right"
                 font_style: "Button"
+
 
 

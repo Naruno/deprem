@@ -53,6 +53,7 @@ setup(
     install_requires="""
     decentra_network==0.43.0
     decentra_network_gui==0.43.0
+    decentra-network-remote-app==0.43.0
     """,
     python_requires=">=3.8, <=3.10",
 )
