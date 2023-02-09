@@ -23,8 +23,7 @@ bin/
 *.pf**
 *.pf2
 
-#test
-*.txt
+
 
 #signs
 *.dnsign
