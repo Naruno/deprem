@@ -1,3 +1,52 @@
+#backups
+decentra_network/backups/*
+
+#manim exports
+media/*
+
+#buildozer
+.buildozer/
+bin/
+
+# Local db
+*.out
+*.json
+*.json*
+*.db
+
+#export
+*.csv
+*proof.zip
+
+#Performance Analyzers
+*.pf
+*.pf**
+*.pf2
+
+#test
+*.txt
+
+#signs
+*.dnsign
+
+
+decentra_network/db/qrs/*
+decentra_network/db/blocs/*
+decentra_network/db/pending_transactions/*
+decentra_network/db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB/*
+decentra_network/db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_not_our_transaction/*
+
+
+decentra_network/apps/testing_app/*.tx
+
+*.log
+
+# Export
+my_transaction.csv
+
+#venv
+venv/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -14,7 +63,6 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
 lib64/
 parts/
 sdist/
@@ -27,11 +75,6 @@ share/python-wheels/
 *.egg
 MANIFEST
 
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
 
 # Installer logs
 pip-log.txt

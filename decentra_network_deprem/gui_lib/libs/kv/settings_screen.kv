@@ -1,0 +1,76 @@
+#: import gch kivy.utils.get_color_from_hex
+
+
+<SettingsScreen>
+
+    ScrollView:
+
+        MDList:
+            spacing: dp(10)
+
+            SettingsBox:
+
+
+
+
+
+<SettingsBox>
+    adaptive_height: True
+
+
+    canvas.before:
+
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+    MDGridLayout:
+
+        cols: 2
+
+        DecentraLabel:
+            text: "DEBUG MODE"
+            halign: "center"
+            font_style: "Button"
+        AnchorLayout:
+            anchor_x: 'center'
+            anchor_y: 'center'
+            MDSwitch:
+                active: root.d_first_status
+                on_active: root.D_Status_Changing(self, self.active)
+
+
+        DecentraLabel:
+            text: "TEST MODE"
+            halign: "center"
+            font_style: "Button"
+        AnchorLayout:
+            anchor_x: 'center'
+            anchor_y: 'center'
+            MDSwitch:
+                active: root.t_first_status
+                on_active: root.T_Status_Changing(self, self.active)
+
+
+        DecentraLabel:
+            text: "MUTE NOTIFICATIONS"
+            halign: "center"
+            font_style: "Button"
+        AnchorLayout:
+            anchor_x: 'center'
+            anchor_y: 'center'
+            MDSwitch:
+                active: root.mt_first_status
+                on_active: root.MT_Status_Changing(self, self.active)
+
+
+        DecentraLabel:
+            text: "DARK MODE"
+            halign: "center"
+            font_style: "Button"
+        AnchorLayout:
+            anchor_x: 'center'
+            anchor_y: 'center'
+            MDSwitch:
+                active: root.dark_mode_first_status
+                on_active: root.DARK_MODE_Status_Changing(self, self.active)
