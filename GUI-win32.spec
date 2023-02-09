@@ -54,4 +54,4 @@ coll = COLLECT(exe,
                strip=False,
                upx=True,
                upx_exclude=[],
-               name='Depren-Decentra-Network-GUI')
+               name='Deprem-Decentra-Network-GUI')
