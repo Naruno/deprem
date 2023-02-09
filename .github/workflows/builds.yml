@@ -5,9 +5,7 @@ on:
     paths:
       - '.github/workflows/builds.yml'
       - 'decentra_network_deprem/**'  
-      - 'requirements/**'  
-      - 'API.spec'
-      - 'CLI.spec'
+      - 'requirements.txt' 
       - 'GUI-win32.spec'
       - 'buildozer.spec'
       - 'recipes/**'
@@ -16,7 +14,7 @@ on:
     paths:
       - '.github/workflows/builds.yml'
       - 'decentra_network_deprem/**'  
-      - 'requirements/**'
+      - 'requirements.txt'
       - 'API.spec'
       - 'CLI.spec'
       - 'GUI-win32.spec'    
