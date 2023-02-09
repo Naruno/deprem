@@ -1,12 +1,10 @@
 #: import environ os.environ
 #: import gch kivy.utils.get_color_from_hex
-#: import NavigationItem decentra_network.gui_lib.libs.baseclass.tabnavigation.NavigationItem
-#: import NavigationBar decentra_network.gui_lib.libs.baseclass.tabnavigation.NavigationBar
+#: import NavigationItem decentra_network_deprem.gui_lib.libs.baseclass.tabnavigation.NavigationItem
+#: import NavigationBar decentra_network_deprem.gui_lib.libs.baseclass.tabnavigation.NavigationBar
 
-#: import WalletScreen decentra_network.gui_lib.libs.baseclass.wallet_screen.WalletScreen
-#: import OperationScreen decentra_network.gui_lib.libs.baseclass.operations_screen.OperationScreen
-#: import NodeScreen decentra_network.gui_lib.libs.baseclass.node_screen.NodeScreen
-#: import SettingsScreen decentra_network.gui_lib.libs.baseclass.settings_screen.SettingsScreen
+#: import WalletScreen decentra_network_deprem.gui_lib.libs.baseclass.wallet_screen.WalletScreen
+#: import SettingsScreen decentra_network_deprem.gui_lib.libs.baseclass.settings_screen.SettingsScreen
 
 
 <DecentraRootScreen>
@@ -24,23 +22,6 @@
                     scr_manager.transition.direction = "right"
                     scr_manager.current = "WALLET"
 
-            NavigationItem:
-                text: "OPERATIONS"
-                icon: "semantic-web"
-                on_release:
-                    scr_manager.transition.direction = "right" \
-                    if scr_manager.current in ["NODE", "SETTINGS"] \
-                    else "left"
-                    scr_manager.current = "OPERATIONS"
-
-            NavigationItem:
-                text: "NODE"
-                icon: "access-point-network"
-                on_release:
-                    scr_manager.transition.direction = "right" \
-                    if scr_manager.current == "SETTINGS" \
-                    else "left"
-                    scr_manager.current = "NODE"
 
 
             NavigationItem:
@@ -56,11 +37,6 @@
             WalletScreen:
                 name: "WALLET"
 
-            OperationScreen:
-                name: "OPERATIONS"
-
-            NodeScreen:
-                name: "NODE"
 
 
             SettingsScreen:

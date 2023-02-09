@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import os
 
+from kivy.app import App
 from kivy.core.clipboard import Clipboard
 from kivy.properties import StringProperty
 from kivymd.uix.bottomsheet import MDListBottomSheet
@@ -20,6 +21,8 @@ from decentra_network.wallet.wallet_create import wallet_create
 from decentra_network.wallet.wallet_delete import wallet_delete
 from decentra_network.wallet.wallet_import import wallet_import
 
+from kivy.clock import mainthread
+from plyer import gps
 
 class WalletScreen(MDScreen):
     pass
@@ -40,11 +43,38 @@ class WalletBox(MDGridLayout):
     wallet_alert_dialog = None
     delete_wallet_alert_dialog = None
 
-    FONT_PATH = f"{os.environ['DECENTRA_ROOT']}/gui_lib/fonts/"
+    FONT_PATH = f"{os.environ['DECENTRAD_ROOT']}/gui_lib/fonts/"
 
-    def reflesh_balance(self):
 
-        self.text = f"Balance: {str(GetBalance(wallet_import(-1, 0)))}"
+
+
+    def start(self, minTime, minDistance):
+        gps.start(minTime, minDistance)
+
+    def stop(self):
+        gps.stop()
+
+    @mainthread
+    def on_location(self, **kwargs):
+        App.get_running_app().gps_location = '\n'.join([
+            '{}={}'.format(k, v) for k, v in kwargs.items()])
+
+    @mainthread
+    def on_status(self, stype, status):
+
+        App.get_running_app().gps_status = 'type={}\n{}'.format(stype, status)
+
+    def on_pause(self):
+        gps.stop()
+        return True
+
+    def on_resume(self):
+        gps.start(1000, 0)
+        pass
+
+
+
+
 
     def show_wallet_alert_dialog(self):
         if not self.wallet_alert_dialog:
@@ -71,32 +101,6 @@ class WalletBox(MDGridLayout):
 
         self.wallet_alert_dialog.open()
 
-    def callback_for_menu_items(self, *args):
-        if args[0] != the_settings()["wallet"]:
-            change_wallet(int(args[0]))
-            self.reflesh_balance()
-
-    def show_example_list_bottom_sheet(self):
-        bottom_sheet_menu = MDListBottomSheet(radius=25, radius_from="top")
-        data = {}
-        all_wallets = list(get_saved_wallet())
-
-        current_wallet = the_settings()["wallet"]
-        for wallet in all_wallets:
-            number = all_wallets.index(wallet)
-            address = wallet_import(all_wallets.index(wallet), 3)
-            if current_wallet != number:
-                data[number] = address
-            else:
-                data[number] = f"{address} - CURRENTLY USED"
-
-        for item in data.items():
-            bottom_sheet_menu.add_item(
-                f"{str(item[0])} : {item[1]}",
-                lambda x, y=item[0]: self.callback_for_menu_items(y),
-            )
-
-        bottom_sheet_menu.open()
 
     def dismiss_wallet_alert_dialog(self, widget):
         self.wallet_alert_dialog.dismiss()

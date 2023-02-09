@@ -7,13 +7,16 @@
 import os
 import sys
 
-sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
+
 import argparse
 
 os.environ["KIVY_NO_ARGS"] = "1"
 from kivy import Config
 from kivy.lang import Builder
 from kivymd.app import MDApp
+
+from plyer import gps
+from kivy.properties import StringProperty
 
 from decentra_network.lib.config_system import get_config
 from decentra_network.lib.log import get_logger
@@ -26,9 +29,9 @@ Config.set("graphics", "minimum_width", "700")
 Config.set("graphics", "minimum_height", "450")
 Config.set("input", "mouse", "mouse,disable_multitouch")
 
-os.environ["DECENTRA_ROOT"] = get_config()["main_folder"]
-
-KV_DIR = f"{os.environ['DECENTRA_ROOT']}/gui_lib/libs/kv/"
+os.environ["DECENTRAD_ROOT"] = os.path.join(os.path.dirname(__file__), "..")
+print(os.environ['DECENTRAD_ROOT'])
+KV_DIR = f"{os.environ['DECENTRAD_ROOT']}/gui_lib/libs/kv/"
 
 for kv_file in os.listdir(KV_DIR):
     with open(os.path.join(KV_DIR, kv_file), encoding="utf-8") as kv:
@@ -36,14 +39,11 @@ for kv_file in os.listdir(KV_DIR):
 
 KV = """
 #:import FadeTransition kivy.uix.screenmanager.FadeTransition
-#:import DecentraWelcomeScreen decentra_network.gui_lib.libs.baseclass.welcome_screen.DecentraWelcomeScreen
-#:import DecentraRootScreen decentra_network.gui_lib.libs.baseclass.root_screen.DecentraRootScreen
+#:import DecentraRootScreen decentra_network_deprem.gui_lib.libs.baseclass.root_screen.DecentraRootScreen
 
 ScreenManager:
     transition: FadeTransition()
 
-    DecentraWelcomeScreen:
-        name: "decentra register screen"
 
     DecentraRootScreen:
         name: "decentra root screen"
@@ -61,10 +61,40 @@ class GUI(MDApp):
       * icon: icon of the app.
     """
 
+    gps_location = StringProperty()
+    gps_status = StringProperty('Click Start to get GPS location updates')
+
+    def request_android_permissions(self):
+        """
+        Since API 23, Android requires permission to be requested at runtime.
+        This function requests permission and handles the response via a
+        callback.
+        The request will produce a popup if permissions have not already been
+        been granted, otherwise it will do nothing.
+        """
+        from android.permissions import request_permissions, Permission
+
+        def callback(permissions, results):
+            """
+            Defines the callback to be fired when runtime permission
+            has been granted or denied. This is not strictly required,
+            but added for the sake of completeness.
+            """
+            if all([res for res in results]):
+                print("callback. All permissions granted.")
+            else:
+                print("callback. Some permissions refused.")
+
+        request_permissions([Permission.ACCESS_COARSE_LOCATION,
+                             Permission.ACCESS_FINE_LOCATION], callback)
+        # # To request permissions without a callback, do:
+        # request_permissions([Permission.ACCESS_COARSE_LOCATION,
+        #                      Permission.ACCESS_FINE_LOCATION])
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.title = "Decentra Network"
-        self.icon = f"{os.environ['DECENTRA_ROOT']}/gui_lib/images/logo.ico"
+        self.icon = f"{os.environ['DECENTRAD_ROOT']}/gui_lib/images/logo.ico"
 
     def build(self):
         """
@@ -74,7 +104,7 @@ class GUI(MDApp):
         self.theme_cls.theme_style = "Dark" if value else "Light"
         self.theme_cls.primary_palette = "Green"  # "Purple", "Red"
 
-        FONT_PATH = os.path.join(os.environ["DECENTRA_ROOT"], "gui_lib",
+        FONT_PATH = os.path.join(os.environ["DECENTRAD_ROOT"], "gui_lib",
                                  "fonts")
 
         self.theme_cls.font_styles.update({
@@ -108,6 +138,19 @@ class GUI(MDApp):
             "Overline":
             [os.path.join(FONT_PATH, "Poppins-Regular"), 10, True, 1.5],
         })
+
+
+        try:
+            gps.configure(on_location=self.on_location,
+                          on_status=self.on_status)
+        except NotImplementedError:
+            import traceback
+            traceback.print_exc()
+            self.gps_status = 'GPS is not implemented for your platform'
+
+        if platform == "android":
+            print("gps.py: Android detected. Requesting permissions")
+            self.request_android_permissions()
 
         return Builder.load_string(KV)
 
