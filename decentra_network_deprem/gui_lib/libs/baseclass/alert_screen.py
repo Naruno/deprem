@@ -11,18 +11,6 @@ from kivymd.uix.gridlayout import MDGridLayout
 from kivymd.uix.screen import MDScreen
 from kivymd_extensions.sweetalert import SweetAlert
 
-
-
-from decentra_network.accounts.get_balance import GetBalance
-from decentra_network.blockchain.block.get_block import GetBlock
-from decentra_network.lib.qr import qr
-from decentra_network.lib.settings_system import change_wallet
-
-from decentra_network.wallet.get_saved_wallet import get_saved_wallet
-from decentra_network.wallet.wallet_create import wallet_create
-from decentra_network.wallet.wallet_delete import wallet_delete
-from decentra_network.wallet.wallet_import import wallet_import
-
 from decentra_network_deprem.decentra_network_integration import Integration
 from decentra_network.lib.settings_system import the_settings, save_settings
 

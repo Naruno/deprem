@@ -30,6 +30,12 @@ os.environ["DECENTRAD_ROOT"] = os.path.join(os.path.dirname(__file__), "..")
 print(os.environ['DECENTRAD_ROOT'])
 KV_DIR = f"{os.environ['DECENTRAD_ROOT']}/gui_lib/libs/kv/"
 
+try:
+    os.listdir(KV_DIR)
+except FileNotFoundError:
+    os.environ["DECENTRAD_ROOT"] = os.path.join(os.path.dirname(__file__), "..", "Deprem-Decentra-Network-GUI", "decentra_network_deprem")
+    KV_DIR = f"{os.environ['DECENTRAD_ROOT']}/gui_lib/libs/kv/"
+
 for kv_file in os.listdir(KV_DIR):
     with open(os.path.join(KV_DIR, kv_file), encoding="utf-8") as kv:
         Builder.load_string(kv.read())

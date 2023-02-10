@@ -12,14 +12,14 @@ from os.path import dirname, abspath, join, basename
 uix = os.path.join(kivymd.path, f"uix{os.sep}")
 toast = os.path.join(kivymd.path, f"toast{os.sep}")
 
-a = Analysis(['decentra_network_deprem\\gui\\main.py'],
+a = Analysis(['decentra_network_deprem\\gui\\main.py','decentra_network_deprem\\gui_lib\\libs\\baseclass\\alert_screen.py', 'decentra_network_deprem\\decentra_network_integration.py'],
              pathex=[],
              binaries=[],
              datas=[
                 (uix, join("kivymd", basename(dirname(uix)))),
                 (toast, join("kivymd", basename(dirname(toast)))),
              ],
-             hiddenimports=["decentra_network", "kivymd_extensions","kivymd_extensions.sweetalert", "sqlite3", "qrcode", "qrcode.image.styledpil", "qrcode.image.styles.colormasks", "plyer"],
+             hiddenimports=["decentra_network", "decentra-network-remote-app", "kivymd_extensions","kivymd_extensions.sweetalert", "sqlite3", "qrcode", "qrcode.image.styledpil", "qrcode.image.styles.colormasks", "plyer"],
              hookspath=[kivymd_hooks_path],
              hooksconfig={},
              runtime_hooks=[],
