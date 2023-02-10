@@ -78,21 +78,5 @@ class DecentraNetworkRecipe(PythonRecipe):
     call_hostpython_via_targetpython = False
     install_in_hostpython = True
 
-    def download_file(self, url, target, cwd=None):
-        """
-        (internal) Download an ``url`` to a ``target``.
-        """
-        backup = os.getcwd()
-        the_directory = os.path.join(os.path.dirname(__file__), "..", "..",
-                                     "..", "..", "..")
-        os.chdir(the_directory)
-        debug((f"\n\n{os.getcwd()}\n{self.version}\n{target}\n\n"))
-        os.system("python3 setup.py sdist")
-        time.sleep(5)
-        os.system(
-            f"cp dist/decentra_network-{self.version}.tar.gz {backup}/{target}"
-        )
-        os.chdir(backup)
-
 
 recipe = DecentraNetworkRecipe()
