@@ -26,7 +26,7 @@ from decentra_network.wallet.wallet_import import wallet_import
 from decentra_network_deprem.decentra_network_integration import Integration
 from decentra_network.lib.settings_system import the_settings, save_settings
 
-from kivy.clock import mainthread
+
 from plyer import gps
 
 class AlertScreen(MDScreen):

@@ -15,12 +15,7 @@ from kivy import Config
 from kivy.lang import Builder
 from kivymd.app import MDApp
 
-from plyer import gps
-from kivy.properties import StringProperty
-from kivy.utils import platform
-from kivy.clock import mainthread
 
-from decentra_network.lib.config_system import get_config
 from decentra_network.lib.log import get_logger
 from decentra_network.lib.safety import safety_check
 from decentra_network.lib.settings_system import the_settings
