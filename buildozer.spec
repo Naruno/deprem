@@ -17,3 +17,9 @@ title = Deprem-Decentra-Network-GUI
 package.name = deprem_decentra_network_gui
 source.dir = decentra_network_deprem/gui/
 requirements =  decentra_network==0.43.0, decentra_network_gui==0.43.0
+
+
+
+[buildozer]
+log_level = 2
+warn_on_root = 1
