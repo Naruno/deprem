@@ -1,9 +1,9 @@
 from pythonforandroid.recipe import PythonRecipe
 
 
-class DecentraNetworkRecipe(PythonRecipe):
+class DecentraNetworkGuiRecipe(PythonRecipe):
     version = '0.43.0'
-    url = 'https://files.pythonhosted.org/packages/18/9a/61dbc0227a7097eae1ac6d02eb2a388b57e638b17bb37279b67caa2a50f5/decentra_network-0.43.0.tar.gz'
+    url = 'https://files.pythonhosted.org/packages/7a/92/bcde51e167642cdc22d80def8dd9ea2c632201ffefc864e1b942f9f4097d/decentra_network_gui-0.43.0.tar.gz'
 
     #call_hostpython_via_targetpython = True
     '''If True, tries to install the module using the hostpython binary
@@ -24,9 +24,9 @@ class DecentraNetworkRecipe(PythonRecipe):
     This is almost always what you want to do.'''
 
     # depends = []
-    depends = []
+    depends = ["Kivy==2.1.0", "kivymd==0.104.2", "qrcode==7.3.1", "kivymd_extensions.sweetalert==0.1.5", "plyer==2.1.0", "pillow==9.1.1"]
 
     call_hostpython_via_targetpython = False
     install_in_hostpython = True
 
-recipe = DecentraNetworkRecipe()
+recipe = DecentraNetworkGuiRecipe()
