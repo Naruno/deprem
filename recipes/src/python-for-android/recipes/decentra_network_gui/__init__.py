@@ -24,7 +24,7 @@ class DecentraNetworkGuiRecipe(PythonRecipe):
     This is almost always what you want to do.'''
 
     # depends = []
-    depends = ["Kivy==2.1.0", "kivymd==0.104.2", "qrcode==7.3.1", "kivymd_extensions.sweetalert==0.1.5", "plyer==2.1.0", "pillow==9.1.1"]
+    depends = ["setuptools", "Kivy==2.1.0", "kivymd==0.104.2", "qrcode==7.3.1", "kivymd_extensions.sweetalert==0.1.5", "plyer==2.1.0", "pillow==9.1.1"]
 
     call_hostpython_via_targetpython = False
     install_in_hostpython = True
