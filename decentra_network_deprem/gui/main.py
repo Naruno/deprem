@@ -26,15 +26,12 @@ Config.set("graphics", "minimum_width", "700")
 Config.set("graphics", "minimum_height", "450")
 Config.set("input", "mouse", "mouse,disable_multitouch")
 
-os.environ["DECENTRAD_ROOT"] = os.path.join(os.path.dirname(__file__), "..")
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
+from decentra_network_deprem.config import root_dir
+
+os.environ["DECENTRAD_ROOT"] = root_dir()
 print(os.environ['DECENTRAD_ROOT'])
 KV_DIR = f"{os.environ['DECENTRAD_ROOT']}/gui_lib/libs/kv/"
-
-try:
-    os.listdir(KV_DIR)
-except FileNotFoundError:
-    os.environ["DECENTRAD_ROOT"] = os.path.join(os.path.dirname(__file__), "..", "Deprem-Decentra-Network-GUI", "decentra_network_deprem")
-    KV_DIR = f"{os.environ['DECENTRAD_ROOT']}/gui_lib/libs/kv/"
 
 for kv_file in os.listdir(KV_DIR):
     with open(os.path.join(KV_DIR, kv_file), encoding="utf-8") as kv:
