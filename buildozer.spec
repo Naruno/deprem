@@ -16,7 +16,7 @@ android.api = 27
 title = Deprem-Decentra-Network-GUI
 package.name = deprem_decentra_network_gui
 source.dir = decentra_network_deprem/gui/
-requirements =  decentra_network==0.43.0, decentra_network_gui==0.43.0
+requirements =  decentra_network==0.43.0, decentra_network_gui==0.43.0,  Kivy==2.1.0, kivymd==0.104.2, qrcode==7.3.1, kivymd_extensions.sweetalert==0.1.5, plyer==2.1.0, pillow==9.1.1
 
 
 
