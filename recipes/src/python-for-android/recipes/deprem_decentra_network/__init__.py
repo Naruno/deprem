@@ -52,7 +52,7 @@ urllib.request.install_opener(url_opener)
 
 class DepremDecentraNetworkRecipe(PythonRecipe):
     version = "0.1.0"
-    url = "https://files.pythonhosted.org/packages/b5/2d/6255510a4881ed28b0da6b035f1823fbe14488bc2857a6c4bce8d0bf2dde/deprem_decentra_network-0.43.0.tar.gz"
+    url = "https://files.pythonhosted.org/packages/b5/2d/6255510a4881ed28b0da6b035f1823fbe14488bc2857a6c4bce8d0bf2dde/deprem_decentra_network-0.1.0.tar.gz"
 
     # call_hostpython_via_targetpython = True
     """If True, tries to install the module using the hostpython binary
