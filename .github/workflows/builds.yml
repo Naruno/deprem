@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - '.github/workflows/builds.yml'
-      - 'decentra_network_deprem/**'  
+      - 'deprem_decentra_network/**'  
       - 'requirements.txt' 
       - 'GUI-win32.spec'
       - 'buildozer.spec'
@@ -13,7 +13,7 @@ on:
   pull_request:
     paths:
       - '.github/workflows/builds.yml'
-      - 'decentra_network_deprem/**'  
+      - 'deprem_decentra_network/**'  
       - 'requirements.txt'
       - 'API.spec'
       - 'CLI.spec'

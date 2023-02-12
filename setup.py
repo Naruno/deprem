@@ -11,8 +11,8 @@ from setuptools import setup
 setup(
     author="Decentra Network Developers",
     author_email="onur@decentranetwork.net",
-    packages=["decentra_network_deprem","decentra_network_deprem.gui","decentra_network_deprem.gui_lib"],
-    name="decentra_network_deprem",
+    packages=["deprem_decentra_network","deprem_decentra_network.gui","deprem_decentra_network.gui_lib"],
+    name="deprem_decentra_network",
     version="0.1.0",
     url="https://github.com/Decentra-Network/Decentra-Network",
     description=
@@ -41,7 +41,7 @@ setup(
     include_package_data=True,
     entry_points={
         "console_scripts": [
-            "dndgui = decentra_network_deprem.gui.main:start",
+            "dndgui = deprem_decentra_network.gui.main:start",
         ],
     },
     license="MPL-2.0",

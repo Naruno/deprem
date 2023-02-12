@@ -27,7 +27,7 @@ Config.set("graphics", "minimum_height", "450")
 Config.set("input", "mouse", "mouse,disable_multitouch")
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
-from decentra_network_deprem.config import root_dir
+from deprem_decentra_network.config import root_dir
 
 os.environ["DECENTRAD_ROOT"] = root_dir()
 print(os.environ['DECENTRAD_ROOT'])
@@ -39,7 +39,7 @@ for kv_file in os.listdir(KV_DIR):
 
 KV = """
 #:import FadeTransition kivy.uix.screenmanager.FadeTransition
-#:import DecentraRootScreen decentra_network_deprem.gui_lib.libs.baseclass.root_screen.DecentraRootScreen
+#:import DecentraRootScreen deprem_decentra_network.gui_lib.libs.baseclass.root_screen.DecentraRootScreen
 
 ScreenManager:
     transition: FadeTransition()

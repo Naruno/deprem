@@ -11,7 +11,7 @@ from kivymd.uix.gridlayout import MDGridLayout
 from kivymd.uix.screen import MDScreen
 from kivymd_extensions.sweetalert import SweetAlert
 
-from decentra_network_deprem.decentra_network_integration import Integration
+from deprem_decentra_network.decentra_network_integration import Integration
 from decentra_network.lib.settings_system import the_settings, save_settings
 
 
@@ -93,7 +93,7 @@ class AlertBox(MDGridLayout):
     def create_the_wallet(self, widget):
         try:
             Integration.send(
-            action="decentra_network_deprem_deprem_oldu",
+            action="deprem_decentra_network_deprem_oldu",
             app_data=the_settings()["location"],
             password=self.read_pass(),
             to_user="decentranetworkcommunity"
